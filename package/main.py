@@ -60,6 +60,6 @@ if __name__ == "__main__":
         distance = np.sqrt(blue_x**2 + blue_y**2)
         total_distance += distance
     average_distance = total_distance / total_pixels if total_pixels > 0 else 0
-    for blue_pixel, red_pixel in nearest_mappings.items():
-        final_image.putpixel(new_edge(blue_pixel, red_pixel, average_distance)(0, 255, 0))
+    # for blue_pixel, blue_pixel2 in nearest_mappings.items():
+    #     final_image.putpixel(new_edge(blue_pixel, red_pixel, average_distance)(0, 255, 0))
     print(f"Average distance between blue and red edge pixels: {average_distance:.2f}")
