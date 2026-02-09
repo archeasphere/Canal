@@ -32,5 +32,5 @@ def new_edge(river_side_1, river_side_2, length):
         new_x = int(color1[0] + length * np.cos(angle))
         new_y = int(color1[1] + length * np.sin(angle))
         new_edge[tuple(color1)] = (new_x, new_y)
-    
+    return new_edge
     

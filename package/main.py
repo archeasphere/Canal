@@ -2,6 +2,7 @@ from PIL import Image
 import numpy as np
 from edgedetect import find_blue_edge_pixels, find_red_edge_pixels
 from nearest_pixel import find_nearest_pixel_array
+from adjustededge import new_edge
 
 if __name__ == "__main__":
     # Find blue edge pixels
@@ -49,6 +50,8 @@ if __name__ == "__main__":
     map_edge_image.show()
 
     # Calculate total distance between blue and red edge pixels
+    final_image = Image.new('RGB', (1152, 684), color='white')
+    final_image_edges = []
     total_distance = 0
     total_pixels = len(nearest_mappings)
     for blue_pixel, red_pixel in nearest_mappings.items():
@@ -57,5 +60,6 @@ if __name__ == "__main__":
         distance = np.sqrt(blue_x**2 + blue_y**2)
         total_distance += distance
     average_distance = total_distance / total_pixels if total_pixels > 0 else 0
+    for blue_pixel, red_pixel in nearest_mappings.items():
+        final_image.putpixel(new_edge(blue_pixel, red_pixel, average_distance)(0, 255, 0))
     print(f"Average distance between blue and red edge pixels: {average_distance:.2f}")
-
